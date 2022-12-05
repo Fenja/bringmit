@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+};
+
+const app = initializeApp(firebaseConfig);
 
 @Component({
   selector: 'app-root',
@@ -7,4 +13,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bringmit';
+
 }
