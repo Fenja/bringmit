@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
+  // TODO environment file -> do not push
+
 };
 
 const app = initializeApp(firebaseConfig);

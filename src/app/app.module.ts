@@ -8,7 +8,9 @@ import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { FooterComponent } from './footer/footer.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import {AppRoutingModule} from "./app-routing.module";
+import { AppRoutingModule } from "./app-routing.module";
+import { environment } from "../environments/environment";
+import { AngularFireModule } from "@angular/fire/compat";
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {AppRoutingModule} from "./app-routing.module";
     PrivacyPolicyComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
+
     AppRoutingModule,
     BrowserModule
   ],
