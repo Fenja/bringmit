@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
-import {By} from "@angular/platform-browser";
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -9,6 +9,7 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ FooterComponent ]
     })
     .compileComponents();
@@ -24,13 +25,15 @@ describe('FooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('has impressum', () => {
-    const impressum = fixture.debugElement.query(By.css('app-impressum'));
-    expect(impressum).toBeTruthy();
+  it('has impressum link', () => {
+    let href = fixture.debugElement.nativeElement.querySelector('#impressum')
+      .getAttribute('href');
+    expect(href).toEqual('/impressum');
   });
 
-  it('has privacy policy', () => {
-    const privacyPolicy = fixture.debugElement.query(By.css('app-privacy-policy'));
-    expect(privacyPolicy).toBeTruthy();
+  it('has privacy policy link', () => {
+    let href = fixture.debugElement.nativeElement.querySelector('#privacypolicy')
+      .getAttribute('href');
+    expect(href).toEqual('/datenschutz');
   });
 });

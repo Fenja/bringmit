@@ -8,6 +8,7 @@ import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { FooterComponent } from './footer/footer.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     PrivacyPolicyComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule
   ],
   providers: [],
