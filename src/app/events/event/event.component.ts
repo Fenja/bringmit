@@ -3,6 +3,7 @@ import {EventModel} from "../../models/event.model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {EventService} from "../event.service";
 import {take} from "rxjs/operators";
+import {EntryModel} from "../../models/entry.model";
 
 @Component({
   selector: 'app-event',
@@ -12,6 +13,7 @@ import {take} from "rxjs/operators";
 export class EventComponent implements OnInit {
 
   event!: EventModel;
+  displayedColumns: string[] = [ 'name','entry', 'category', 'actions'];
 
   constructor(
     private route: ActivatedRoute,

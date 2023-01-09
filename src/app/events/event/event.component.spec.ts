@@ -22,4 +22,9 @@ describe('EventComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('has table', () => {
+    let table = fixture.debugElement.nativeElement.querySelector('#table');
+    expect(table).toBeTruthy();
+  });
 });

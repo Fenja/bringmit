@@ -2,11 +2,12 @@
   Neue Veranstaltungen anlegen, anpassen und den Link an Besucher verteilen.
 </section>
 
-<button (click)="navigateToNewEvent()">Neue Veranstaltung erstellen</button>
+<button mat-button (click)="navigateToNewEvent()">Neue Veranstaltung erstellen</button>
 
 <div>
   Veranstaltung bearbeiten:
   <input
+    matInput
     type="text"
     placeholder="Veranstaltungs-Code"
     #id

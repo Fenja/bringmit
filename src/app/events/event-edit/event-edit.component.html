@@ -2,26 +2,42 @@
 
 <h2>Veranstaltung bearbeiten</h2>
 
-<section>
-  <input
-    type="text"
-    placeholder="Veranstaltungsname"
-    [(ngModel)]="event.title"
-  />
+<section class="form">
+  <div>
 
-  <input
-    type="date"
-    [(ngModel)]="event.date"
-  />
+  <label for="name">Titel</label>
+    <input
+      matInput
+      id="name"
+      type="text"
+      placeholder="Veranstaltungsname"
+      [(ngModel)]="event.title"
+    />
+  </div>
 
-  <input
-    type="text"
-    placeholder="Beschreibungstext"
-    [(ngModel)]="event.description"
-  />
+  <div>
+    <label for="date">Datum</label>
+    <input
+      matInput
+      id="date"
+      type="date"
+      [(ngModel)]="event.date"
+    />
+  </div>
+
+  <div>
+    <label for="description">Beschreibungstext</label>
+    <textarea
+      matInput
+      id="description"
+      rows="5"
+      placeholder="Beschreibungstext"
+      [(ngModel)]="event.description"
+    ></textarea>
+  </div>
 </section>
 
-<button (click)="saveEvent()">Speichern</button>
-<button>Abbrechen</button>
+<button mat-button (click)="saveEvent()">Speichern</button>
+<button mat-button>Abbrechen</button>
 
 </div>
