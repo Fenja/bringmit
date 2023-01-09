@@ -3,7 +3,7 @@ import { EventModel } from "../models/event.model";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { map, take } from "rxjs/operators";
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,9 @@ export class EventService {
 
   createNewEvent(): EventModel {
     return {
-      categories: undefined,
+      categories: [],
       date: undefined,
-      entries: undefined,
+      entries: [],
       description: "",
       title: "",
     }
@@ -49,6 +49,7 @@ export class EventService {
         title: event.title,
         description: event.description,
         date: event.date,
+        entries: event.entries
       }
     );
   }

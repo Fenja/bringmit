@@ -1,38 +1,54 @@
 <div *ngIf="!!event">
-<h2>{{ event.title }}</h2>
 
-<time>{{ event.date }}</time>
+  <section class="margin-b">
+    <h2>{{ event.title }}</h2>
+    <time>{{ event.date | date: 'dd.MM.yyyy' }}</time><br>
+    <span [innerHTML]="event.description"></span>
+  </section>
 
-<section>{{ event.description }}</section>
+  <section>
+    <table mat-table id="table" [dataSource]="event.entries" class="margin-b">
 
-  <table mat-table [dataSource]="event.entries ?? []">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Wer?</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <td mat-footer-cell *matFooterCellDef><input matInput type="text" placeholder="Name" [(ngModel)]="item.name"></td>
+      </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Wer?</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      <td mat-footer-cell *matFooterCellDef><input matInput type="text" placeholder="Name"></td>
-    </ng-container>
+      <ng-container matColumnDef="entry">
+        <th mat-header-cell *matHeaderCellDef>Was?</th>
+        <td mat-cell *matCellDef="let element">{{ element.entry }}</td>
+        <td mat-footer-cell *matFooterCellDef><input matInput type="text" placeholder="Beitrag" [(ngModel)]="item.entry"></td>
+      </ng-container>
 
-    <ng-container matColumnDef="entry">
-      <th mat-header-cell *matHeaderCellDef>Was?</th>
-      <td mat-cell *matCellDef="let element">{{ element.entry }}</td>
-      <td mat-footer-cell *matFooterCellDef><input matInput type="text" placeholder="Beitrag"></td>
-    </ng-container>
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Kategorie</th>
+        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+        <td mat-footer-cell *matFooterCellDef><input matInput type="text" placeholder="Kategorie" [(ngModel)]="item.category"></td>
+      </ng-container>
 
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef>Kategorie</th>
-      <td mat-cell *matCellDef="let element">{{ element.category }}</td>
-      <td mat-footer-cell *matFooterCellDef><input matInput type="text" placeholder="Kategorie"></td>
-    </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" style="display: flex; flex-direction: row">
+          <button mat-raised-button label="Bearbeiten" (click)="editItem(element)"><mat-icon>edit</mat-icon></button>
+          <button mat-raised-button label="Löschen" (click)="deleteItem(element)"><mat-icon>delete</mat-icon></button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef>
+          <button mat-button (click)="saveItem()"><mat-icon>save</mat-icon> Speichern</button>
+          <button mat-raised-button label="Abbrechen" (click)="cancel()"><mat-icon>clear</mat-icon></button>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef>buttons</td>
-      <td mat-footer-cell *matFooterCellDef><button mat-button>Speichern</button></td>
-    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    </table>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-  </table>
+    <span class="hint">Die Daten auf dieser Seite sind nicht verschlüsselt oder Passwortgeschützt, sondern für jeden mit dem zugehörigen Link aufrufbar.<br>Bitte keine ganzen Namen oder sonstige sensiblen Daten eingeben (Adresse, Zahlengsdaten, Links, Passwörter, Telefonnummern, ...).<br>
+      <br>Die Benutzung dieser Anwendung geschieht auf eigene Verantwortung. Es empfiehlt sich zur Zuordnung den Vornamen und ggf. den Anfangsbuchstaben des Nachnamen einzutragen.
+    </span>
+  </section>
+</div>
+<div *ngIf="!event">
+  <span id="message">Diese Veranstaltung existiert nicht mehr oder der Link ist unvollständig.</span>
 </div>

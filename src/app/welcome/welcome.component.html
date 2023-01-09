@@ -1,16 +1,32 @@
 <section>
-  Neue Veranstaltungen anlegen, anpassen und den Link an Besucher verteilen.
+  Dies ist <strong>bringmit</strong>, eine einfache Möglichkeit, um Buffets für Veranstaltungen zu organisieren.
+</section>
+<hr>
+<section class="margin-b">
+  <div>
+    <span>Um eine neue Veranstaltung zu erstellen, einfach auf den Button klicken.<br>
+      Es können Titel, Datum und ein Beschreibungstext eingegeben werden, danach kann ein Link an alle Teilnehmer der Veranstaltung verschickt werden.
+    </span>
+    <span>TODO Bild einfügen</span>
+  </div>
+  <div>
+    <button mat-raised-button (click)="navigateToNewEvent()">Neue Veranstaltung erstellen</button>
+  </div>
 </section>
 
-<button mat-button (click)="navigateToNewEvent()">Neue Veranstaltung erstellen</button>
-
-<div>
-  Veranstaltung bearbeiten:
+<section class="margin-b">
+  <div>Falls die Informationen der Veranstaltung nachträglich noch geändert werden müssen, einfach die ID eingeben. Die Änderungen können dann gespeichert werden und sind sofort sichtbar.</div>
+  <label for="code">Veranstaltungs-Code: </label>
   <input
-    matInput
+    id="code"
     type="text"
-    placeholder="Veranstaltungs-Code"
+    placeholder="-BringMit123"
     #id
-  />
-  <button (click)="navigateToEditEvent(id.value)">Bearbeiten</button>
-</div>
+    style="margin-right: 1rem;"
+  >
+  <button mat-raised-button (click)="navigateToEditEvent(id.value)" [disabled]="(id.value.length < 5)">Bearbeiten</button>
+</section>
+
+<section>
+  <span>Veranstaltungen werden eine Woche nach Ablauf automatisch gelöscht.</span>
+</section>

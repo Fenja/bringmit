@@ -12,13 +12,13 @@ import { AppRoutingModule } from "./app-routing.module";
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire/compat";
 import { EventNewComponent } from './events/event-new/event-new.component';
-import {FormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from "@angular/material/table";
-import {MatInputModule} from "@angular/material/input";
-import {MatButtonModule} from "@angular/material/button";
-import {MatSortModule} from "@angular/material/sort";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { MatTableModule } from "@angular/material/table";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSortModule } from "@angular/material/sort";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -44,6 +44,7 @@ import {MatSortModule} from "@angular/material/sort";
     MatInputModule,
     MatButtonModule,
     MatSortModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

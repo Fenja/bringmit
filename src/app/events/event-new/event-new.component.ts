@@ -25,8 +25,8 @@ export class EventNewComponent implements OnInit {
   }
 
   saveEvent() {
-    this.eventService.saveEvent(this.event).subscribe(() => {
-        this.router.navigate(['/ ' + this.event.id]).then(
+    this.eventService.saveEvent(this.event).subscribe((response) => {
+      this.router.navigate(['/' + response.name]).then(
           // TODO show popup with link
         );
       },

@@ -9,7 +9,7 @@
       type="text"
       placeholder="Veranstaltungsname"
       [(ngModel)]="event.title"
-    />
+    >
   </div>
 
   <div>
@@ -19,7 +19,7 @@
       id="date"
       type="date"
       [(ngModel)]="event.date"
-    />
+    >
   </div>
 
   <div>
@@ -34,4 +34,4 @@
   </div>
 </section>
 
-<button mat-button (click)="saveEvent()">Speichern</button>
+<button mat-raised-button (click)="saveEvent()">Speichern</button>
