@@ -9,6 +9,7 @@
   <input
     type="text"
     placeholder="Veranstaltungs-Code"
+    #id
   />
-  <button>Bearbeiten</button>
+  <button (click)="navigateToEditEvent(id.value)">Bearbeiten</button>
 </div>

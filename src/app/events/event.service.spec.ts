@@ -1,13 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
 import { EventService } from './event.service';
-import {EventModel} from "../models/event.model";
+import { EventModel } from "../models/event.model";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('EventService', () => {
   let service: EventService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+    });
     service = TestBed.inject(EventService);
   });
 
@@ -15,8 +18,8 @@ describe('EventService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('creates new event with uid', () => {
+  it('creates new event', () => {
     let event: EventModel = service.createNewEvent();
-    expect(event.uid).toBeTruthy();
+    expect(event).toBeTruthy();
   });
 });

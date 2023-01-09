@@ -11,6 +11,9 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { AppRoutingModule } from "./app-routing.module";
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire/compat";
+import { EventNewComponent } from './events/event-new/event-new.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,13 +23,17 @@ import { AngularFireModule } from "@angular/fire/compat";
     EventEditComponent,
     FooterComponent,
     ImpressumComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    EventNewComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
 
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

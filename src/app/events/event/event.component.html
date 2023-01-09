@@ -1,1 +1,7 @@
-<p>event works!</p>
+<div *ngIf="!!event">
+<h2>{{ event.title }}</h2>
+
+<time>{{ event.date }}</time>
+
+<section>{{ event.description }}</section>
+</div>
