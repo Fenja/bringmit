@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EventModel } from "../../models/event.model";
 import {EventService} from "../event.service";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {NewEventDialog} from "./new-event-dialog/new-event-dialog.component";
 
 @Component({
   selector: 'app-event-new',
@@ -17,6 +19,7 @@ export class EventNewComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private router: Router,
+    public dialog: MatDialog,
   ) {
     this.event = this.eventService.createNewEvent();
   }
@@ -26,14 +29,24 @@ export class EventNewComponent implements OnInit {
 
   saveEvent() {
     this.eventService.saveEvent(this.event).subscribe((response) => {
-      this.router.navigate(['/' + response.name]).then(
-          // TODO show popup with link
-        );
+      console.log(response);
+        this.openNewEventDialog(response.name)
       },
       error => {
         console.log(error);
         // TODO popup
       }
     );
+  }
+
+  openNewEventDialog(eventId: string): void {
+    const dialogRef = this.dialog.open(NewEventDialog, {
+      data: {id: eventId},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('dialog closed');
+      this.router.navigate(['/' + eventId]).then();
+    });
   }
 }

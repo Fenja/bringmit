@@ -19,8 +19,10 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSortModule } from "@angular/material/sort";
 import { MatIconModule } from "@angular/material/icon";
-import {MatSelectModule} from "@angular/material/select";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MatSelectModule } from "@angular/material/select";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NewEventDialog } from './events/event-new/new-event-dialog/new-event-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -31,24 +33,26 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     FooterComponent,
     ImpressumComponent,
     PrivacyPolicyComponent,
-    EventNewComponent
+    EventNewComponent,
+    NewEventDialog,
   ],
-    imports: [
-        AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        BrowserModule,
-        FormsModule,
+  imports: [
+    AngularFireModule.initializeApp(environment.FIREBASE_CONFIG),
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    BrowserModule,
+    FormsModule,
 
-        HttpClientModule,
+    HttpClientModule,
 
-        MatTableModule,
-        MatInputModule,
-        MatButtonModule,
-        MatSortModule,
-        MatIconModule,
-        MatSelectModule,
-    ],
+    MatDialogModule,
+    MatTableModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSortModule,
+    MatIconModule,
+    MatSelectModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
