@@ -1,3 +1,41 @@
+@use '~@angular/material' as mat;
+
+@import "~@angular/material/theming";
+
+@include mat.core();
+
+$angular-primary: mat.define-palette(mat.$lime-palette, 500, 100, 900);
+$angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$angular-warn: mat.define-palette(mat.$red-palette);
+
+$angular-default-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $angular-primary,
+        accent: $angular-accent,
+        warn: $angular-warn,
+      ),
+    )
+);
+
+$angular-dark-theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $angular-primary,
+        accent: $angular-accent,
+        warn: $angular-warn,
+      ),
+    )
+);
+
+@include mat.all-component-themes($angular-default-theme);
+
+@media (prefers-color-scheme: dark) {
+  @include mat.all-component-colors($angular-dark-theme);
+}
+
+
 html, body, app-root {
   height: 100%;
 }
@@ -18,11 +56,11 @@ footer {
   padding: 1em;
   width: 100%;
 
-  background-color: aquamarine;
+  background-color: lime;
 }
 
 h1 {
-  color: aquamarine;
+  color: lime;
   font-size: small;
   padding-left: 0.5rem;
 }
@@ -48,5 +86,5 @@ table {
 
 .hint {
   font-size: 0.7rem;
-  color: dimgrey;
+  opacity: 0.8;
 }
