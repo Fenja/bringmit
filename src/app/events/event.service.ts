@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventModel } from "../models/event.model";
+import {defaultCategories, EventModel} from "../models/event.model";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { map, take } from "rxjs/operators";
@@ -16,7 +16,7 @@ export class EventService {
 
   createNewEvent(): EventModel {
     return {
-      categories: [],
+      categories: defaultCategories,
       date: undefined,
       entries: [],
       description: "",

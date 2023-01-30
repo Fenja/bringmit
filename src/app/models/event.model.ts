@@ -8,3 +8,12 @@ export interface EventModel {
   date: Date | undefined;
   categories: string[];
 }
+
+export const defaultCategories = [
+  'Kuchen',
+  'Brot',
+  'Salat',
+  'Fleisch',
+  'Beilage',
+  'Dessert'
+]

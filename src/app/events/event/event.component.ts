@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventModel } from "../../models/event.model";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { EventService } from "../event.service";
-import {filter, take, tap} from "rxjs/operators";
+import { filter, take } from "rxjs/operators";
 import { EntryModel } from "../../models/entry.model";
 
 @Component({
@@ -66,19 +66,20 @@ export class EventComponent implements OnInit {
       this.event!.entries.push(this.item);
 
     } else {
-      let index = this.event!.entries.findIndex(item => item.name === this.tmpItem!.name && item.entry === this.tmpItem!.entry && item.category === this.item!.category);
+      let index = this.event!.entries.indexOf(this.tmpItem);
       this.event!.entries[index] = this.item;
-      console.log(JSON.stringify(this.event!.entries[index]));
     }
 
+    console.log('event to edit',JSON.stringify(this.event.entries));
     this.eventService.editEvent(this.event!)
       .pipe(
-        tap(() => console.log('editEvent')),
         take(1)
       )
       .subscribe(() => {
         this.eventService.getEventById(this.id!)
-          .pipe(take(1))
+          .pipe(
+            take(1)
+          )
           .subscribe(
           (event) => {
             this.event = event;

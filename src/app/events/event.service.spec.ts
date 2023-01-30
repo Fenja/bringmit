@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { EventService } from './event.service';
-import { EventModel } from "../models/event.model";
+import {defaultCategories, EventModel} from "../models/event.model";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { EntryModel } from "../models/entry.model";
 
@@ -49,5 +49,10 @@ describe('EventService', () => {
         });
       });
     });
+  });
+
+  it('adds default categories to new event', () => {
+    let event: EventModel = service.createNewEvent();
+    expect(event.categories).toBe(defaultCategories);
   });
 });
