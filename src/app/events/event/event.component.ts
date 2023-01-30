@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventModel } from "../../models/event.model";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { EventService } from "../event.service";
-import { filter, take } from "rxjs/operators";
+import {filter, take, tap} from "rxjs/operators";
 import { EntryModel } from "../../models/entry.model";
 
 @Component({
@@ -21,6 +21,7 @@ export class EventComponent implements OnInit {
   };
   item: EntryModel = this.emptyItem;
   tmpItem?: EntryModel;
+  id?: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class EventComponent implements OnInit {
       (params: Params) => {
         const id = params['id'];
         if (!!id) {
+          this.id = id;
           this.eventService.getEventById(id)
             .pipe(
               filter((event) => !!event)
@@ -42,7 +44,6 @@ export class EventComponent implements OnInit {
             .subscribe(event => {
             this.event = event;
             this.event!.id = id;
-            console.log(this.event?.entries);
           });
         } else {
           console.log('No event found');
@@ -57,18 +58,37 @@ export class EventComponent implements OnInit {
   saveItem() {
     if (!this.event) return;
 
-    if (!this.tmpItem) {
+    if (this.event!.entries === undefined) {
+      this.event!.entries = [];
+    }
+
+    if (this.tmpItem === undefined) {
       this.event!.entries.push(this.item);
 
     } else {
-      let index = this.event!.entries.findIndex(item => item === this.tmpItem);
+      let index = this.event!.entries.findIndex(item => item.name === this.tmpItem!.name && item.entry === this.tmpItem!.entry && item.category === this.item!.category);
       this.event!.entries[index] = this.item;
+      console.log(JSON.stringify(this.event!.entries[index]));
     }
-    this.eventService.editEvent(this.event!).subscribe(() => {
-      this.item = this.emptyItem;
+
+    this.eventService.editEvent(this.event!)
+      .pipe(
+        tap(() => console.log('editEvent')),
+        take(1)
+      )
+      .subscribe(() => {
+        this.eventService.getEventById(this.id!)
+          .pipe(take(1))
+          .subscribe(
+          (event) => {
+            this.event = event;
+            this.item = this.emptyItem;
+          }
+      )
     });
     this.tmpItem = undefined;
-    // TODO template does not update
+    // TODO only first edit works
+    // whyyyy?´´-
   }
 
   editItem(element: EntryModel) {
