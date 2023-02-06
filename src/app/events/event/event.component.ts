@@ -14,12 +14,11 @@ export class EventComponent implements OnInit {
 
   event?: EventModel;
   displayedColumns: string[] = [ 'name','entry', 'category', 'actions'];
-  emptyItem = {
+  item: EntryModel = {
     name: '',
     entry: '',
-    category: '',
+    category: ''
   };
-  item: EntryModel = this.emptyItem;
   tmpItem?: EntryModel;
   id?: string;
 
@@ -70,7 +69,6 @@ export class EventComponent implements OnInit {
       this.event!.entries[index] = this.item;
     }
 
-    console.log('event to edit',JSON.stringify(this.event.entries));
     this.eventService.editEvent(this.event!)
       .pipe(
         take(1)
@@ -83,7 +81,11 @@ export class EventComponent implements OnInit {
           .subscribe(
           (event) => {
             this.event = event;
-            this.item = this.emptyItem;
+            this.item = {
+              name: '',
+              entry: '',
+              category: ''
+            };
           }
       )
     });
@@ -105,12 +107,20 @@ export class EventComponent implements OnInit {
     // TODO popup
     this.event!.entries = this.event!.entries.filter(item => item !== element);
     this.eventService.editEvent(this.event!).subscribe(() => {
-      this.item = this.emptyItem;
+      this.item = {
+        name: '',
+        entry: '',
+        category: ''
+      };
     });
   }
 
   cancel() {
-    this.item = this.emptyItem;
+    this.item = {
+      name: '',
+      entry: '',
+      category: ''
+    };
     this.tmpItem = undefined;
   }
 }

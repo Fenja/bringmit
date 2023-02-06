@@ -17,6 +17,7 @@ export class WelcomeComponent {
   }
 
   navigateToEditEvent(id: string) {
+    // TODO handling invalid id
     this.router.navigate(['/edit/'+id]).then();
   }
 

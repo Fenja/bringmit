@@ -10,10 +10,11 @@ export interface EventModel {
 }
 
 export const defaultCategories = [
-  'Kuchen',
-  'Brot',
+  'Getränke',
   'Salat',
-  'Fleisch',
-  'Beilage',
-  'Dessert'
+  'aus dem Ofen/Pfanne',
+  'Dipps',
+  'Brot',
+  'Dessert',
+  'Kuchen'
 ]
